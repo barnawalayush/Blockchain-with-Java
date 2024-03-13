@@ -17,14 +17,13 @@ public class Main {
         createBlock(blockChain);
 
         for(Block block: blockChain){
-            String hashCode = getHashValue(block.getId() + block.getTimestamp());
             System.out.println("Block:");
             System.out.println("Id: " + block.getId());
             System.out.println("Timestamp: " + block.getTimestamp());
             System.out.println("Hash of the previous block: ");
             System.out.println(block.getPreviousHashCode());
             System.out.println("Hash of the block: ");
-            System.out.println(hashCode);
+            System.out.println(block.getCurrentHashCode());
             System.out.println();
         }
     }
@@ -44,19 +43,18 @@ public class Main {
 
         Block lastBlock = null;
         String timeStamp = String.valueOf(new Date().getTime());
+
         if(!blockChain.isEmpty()){
 
             lastBlock = blockChain.get(blockChain.size()-1);
-            String toHash = lastBlock.getId() + lastBlock.getTimestamp();
-            String hashCode = getHashValue(toHash);
             long id = Long.parseLong(lastBlock.getId());
             id += 1;
-            String newBlockHashCode = getHashValue(id + timeStamp);
-            blockChain.add(new Block(String.valueOf(id), timeStamp, hashCode, newBlockHashCode));
+            String newBlockHashCode = getHashValue(id + timeStamp + lastBlock.getCurrentHashCode());
+            blockChain.add(new Block(String.valueOf(id), timeStamp, lastBlock.getCurrentHashCode(), newBlockHashCode));
 //            System.out.println(hashCode);
 
         }else{
-            String toHash = "1" + timeStamp;
+            String toHash = "1" + timeStamp + "0";
             String hashCode = getHashValue(toHash);
             blockChain.add(new Block("1", timeStamp, "0", hashCode));
         }
