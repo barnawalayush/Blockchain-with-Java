@@ -6,12 +6,16 @@ public class Block {
     private String timestamp;
     private String previousHashCode;
     private String currentHashCode;
+    private String magicNumber;
+    long timeToGenerate;
 
-    public Block(String id, String timestamp, String previousHashCode, String currentHashCode) {
+    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate) {
         this.id = id;
         this.timestamp = timestamp;
         this.previousHashCode = previousHashCode;
         this.currentHashCode = currentHashCode;
+        this.magicNumber = magicNumber;
+        this.timeToGenerate = timeToGenerate;
     }
 
     public String getId() {
@@ -44,5 +48,21 @@ public class Block {
 
     public void setCurrentHashCode(String currentHashCode) {
         this.currentHashCode = currentHashCode;
+    }
+
+    public String getMagicNumber() {
+        return magicNumber;
+    }
+
+    public void setMagicNumber(String magicNumber) {
+        this.magicNumber = magicNumber;
+    }
+
+    public long getTimeToGenerate() {
+        return timeToGenerate;
+    }
+
+    public void setTimeToGenerate(long timeToGenerate) {
+        this.timeToGenerate = timeToGenerate;
     }
 }
