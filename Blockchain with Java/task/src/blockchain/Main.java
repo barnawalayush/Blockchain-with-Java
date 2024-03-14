@@ -1,28 +1,40 @@
 package blockchain;
 
 import java.security.MessageDigest;
+import java.security.SecureRandom;
 import java.util.*;
 import java.util.concurrent.*;
 
 public class Main {
 
+    public static int MAX_MINER_NUM = 10000;
+    private static final List<Block> blockChain = new ArrayList<>();
+
     private static int numberOfZero = 0;
 
     public static void main(String[] args) {
 
-        Random random = new Random();
+        List<Thread> listOfThread = new ArrayList<>();
 
-        List<Block> blockChain = new LinkedList<>();
-//
-        createBlock(blockChain, random);
-        createBlock(blockChain, random);
-        createBlock(blockChain, random);
-        createBlock(blockChain, random);
-        createBlock(blockChain, random);
+        int minerNum =1;
+        while(blockChain.size() < 5){
+            Thread thread = new MyThread(blockChain, minerNum);
+            listOfThread.add(thread);
+            minerNum++;
+            thread.start();
+        }
+
+        for(Thread thread: listOfThread){
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
         for(Block block: blockChain){
             System.out.println("Block:");
-            System.out.println("Created by miner # " + block.getMinerName());
+            System.out.println("Created by miner # " + block.getMinerNum());
             System.out.println("Id: " + block.getId());
             System.out.println("Timestamp: " + block.getTimestamp());
             System.out.println("Magic number: " + block.getMagicNumber());
@@ -31,7 +43,13 @@ public class Main {
             System.out.println("Hash of the block: ");
             System.out.println(block.getCurrentHashCode());
             System.out.println("Block was generating for " + block.getTimeToGenerate() + " seconds");
-            System.out.println("N value: " + block.getNumberOfZeros());
+            if(block.getTimeToGenerate() <= 0){
+                System.out.println("N was increased to " + block.getNumberOfZeros());
+            }else if(block.getTimeToGenerate() >= 65){
+                System.out.println("N was decreased to " + block.getNumberOfZeros());
+            }else{
+                System.out.println("N stays same");
+            }
             System.out.println();
         }
 
@@ -48,90 +66,13 @@ public class Main {
         return true;
     }
 
-    private static void createBlock(List<Block> blockChain, Random random) {
-
-        Block lastBlock = null;
-        String timeStamp = String.valueOf(new Date().getTime());
-        String magicNumber = null;
-        long timeToGenerate;
-        String minerName;
-
-        ExecutorService executor = Executors.newCachedThreadPool();
-
-        if(!blockChain.isEmpty()){
-
-            lastBlock = blockChain.get(blockChain.size()-1);
-            long id = Long.parseLong(lastBlock.getId());
-            id += 1;
-
-            String newBlockHashCode = null;
-            int count = 0;
-            long startTime = System.currentTimeMillis();
-
-            Callable<ArrayList<String>> task = new MyCallable(magicNumber, String.valueOf(id), timeStamp, lastBlock, random, String.valueOf(numberOfZero));
-
-            Future<ArrayList<String>> future = executor.submit(task);
-
-//            ArrayList<String> list = generateHashCode(magicNumber, String.valueOf(id), timeStamp, lastBlock, random, numberOfZero);
-
-            ArrayList<String> list = null;
-            try {
-                list = future.get();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } catch (ExecutionException e) {
-                throw new RuntimeException(e);
-            }
-            long endTime = System.currentTimeMillis();
-
-            newBlockHashCode = list.get(1);
-            magicNumber = list.get(0);
-            minerName = list.get(2);
-
-            timeToGenerate = endTime-startTime;
-            if(timeToGenerate <= 0) numberOfZero++;
-            else if(timeToGenerate >= 65) numberOfZero--;
-
-
-            blockChain.add(new Block(String.valueOf(id), timeStamp, lastBlock.getCurrentHashCode(), newBlockHashCode, magicNumber, endTime-startTime, minerName, String.valueOf(numberOfZero)));
-
-        }else{
-
-            String newBlockHashCode = null;
-            int count = 0;
-            long startTime = System.currentTimeMillis();
-
-            Callable<ArrayList<String>> task = new MyCallable(magicNumber, "1", timeStamp, lastBlock, random, String.valueOf(numberOfZero));
-
-            Future<ArrayList<String>> future = executor.submit(task);
-
-//            ArrayList<String> list = generateHashCode(magicNumber, "1", timeStamp, lastBlock, random, numberOfZero);
-            long endTime = System.currentTimeMillis();
-
-            ArrayList<String> list = null;
-            try {
-                list = future.get();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            } catch (ExecutionException e) {
-                throw new RuntimeException(e);
-            }
-
-            newBlockHashCode = list.get(1);
-            magicNumber = list.get(0);
-            minerName = list.get(2);
-
-            timeToGenerate = endTime-startTime;
-            if(timeToGenerate <= 0) numberOfZero++;
-            else if(timeToGenerate >= 65) numberOfZero--;
-
-            blockChain.add(new Block("1", timeStamp, "0", newBlockHashCode, magicNumber, endTime-startTime, minerName, String.valueOf(numberOfZero)));
-        }
-
-    }
-
-    private static ArrayList<String> generateHashCode(String magicNumber, String id, String timeStamp, Block lastBlock, Random random, String numberOfZero){
+    public static ArrayList<String> generateHashCode(String magicNumber, String id, String timeStamp, String numberOfZero){
+//        SecureRandom random = new SecureRandom();
+        Random random = new Random(0);
         String newBlockHashCode = null;
+        Block lastBlock = null;
+        if(!blockChain.isEmpty())
+            lastBlock = blockChain.get(blockChain.size()-1);
         int count = 0;
         while(true){
             magicNumber = String.valueOf(random.nextInt());
@@ -151,6 +92,7 @@ public class Main {
         ArrayList<String> list = new ArrayList<>();
         list.add(magicNumber);
         list.add(newBlockHashCode);
+        if(lastBlock != null)list.add(lastBlock.getCurrentHashCode());
         return list;
     }
 
@@ -169,31 +111,6 @@ public class Main {
         }
         catch(Exception e) {
             throw new RuntimeException(e);
-        }
-    }
-
-    static class MyCallable implements Callable<ArrayList<String>> {
-        String magicNumber;
-        String id;
-        String timeStamp;
-        Block lastBlock;
-        Random random;
-        String numberOfZero;
-
-        public MyCallable(String magicNumber, String id, String timeStamp, Block lastBlock, Random random, String numberOfZero) {
-            this.magicNumber = magicNumber;
-            this.id = id;
-            this.timeStamp = timeStamp;
-            this.lastBlock = lastBlock;
-            this.random = random;
-            this.numberOfZero = numberOfZero;
-        }
-
-        @Override
-        public ArrayList<String> call() {
-            ArrayList<String> list = generateHashCode(magicNumber, id, timeStamp, lastBlock, random, numberOfZero);
-            list.add(Thread.currentThread().getName());
-            return list;
         }
     }
 

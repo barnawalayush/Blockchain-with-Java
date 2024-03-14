@@ -3,23 +3,25 @@ package blockchain;
 public class Block {
 
     private String id;
+    private int minerNum;
     private String timestamp;
     private String previousHashCode;
     private String currentHashCode;
     private String magicNumber;
     long timeToGenerate;
-    String minerName;
     String numberOfZeros;
 
-    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String minerName, String numberOfZeros) {
+    public Block(){}
+
+    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String numberOfZeros, int minerNum) {
         this.id = id;
         this.timestamp = timestamp;
         this.previousHashCode = previousHashCode;
         this.currentHashCode = currentHashCode;
         this.magicNumber = magicNumber;
         this.timeToGenerate = timeToGenerate;
-        this.minerName = minerName;
         this.numberOfZeros = numberOfZeros;
+        this.minerNum = minerNum;
     }
 
     public String getId() {
@@ -58,6 +60,14 @@ public class Block {
         return magicNumber;
     }
 
+    public int getMinerNum() {
+        return minerNum;
+    }
+
+    public void setMinerNum(int minerNum) {
+        this.minerNum = minerNum;
+    }
+
     public void setMagicNumber(String magicNumber) {
         this.magicNumber = magicNumber;
     }
@@ -70,13 +80,6 @@ public class Block {
         this.timeToGenerate = timeToGenerate;
     }
 
-    public String getMinerName() {
-        return minerName;
-    }
-
-    public void setMinerName(String minerName) {
-        this.minerName = minerName;
-    }
 
     public String getNumberOfZeros() {
         return numberOfZeros;
