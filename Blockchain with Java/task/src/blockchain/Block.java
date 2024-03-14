@@ -8,14 +8,18 @@ public class Block {
     private String currentHashCode;
     private String magicNumber;
     long timeToGenerate;
+    String minerName;
+    String numberOfZeros;
 
-    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate) {
+    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String minerName, String numberOfZeros) {
         this.id = id;
         this.timestamp = timestamp;
         this.previousHashCode = previousHashCode;
         this.currentHashCode = currentHashCode;
         this.magicNumber = magicNumber;
         this.timeToGenerate = timeToGenerate;
+        this.minerName = minerName;
+        this.numberOfZeros = numberOfZeros;
     }
 
     public String getId() {
@@ -64,5 +68,21 @@ public class Block {
 
     public void setTimeToGenerate(long timeToGenerate) {
         this.timeToGenerate = timeToGenerate;
+    }
+
+    public String getMinerName() {
+        return minerName;
+    }
+
+    public void setMinerName(String minerName) {
+        this.minerName = minerName;
+    }
+
+    public String getNumberOfZeros() {
+        return numberOfZeros;
+    }
+
+    public void setNumberOfZeros(String numberOfZeros) {
+        this.numberOfZeros = numberOfZeros;
     }
 }
