@@ -1,5 +1,7 @@
 package blockchain;
 
+import blockchain.Data.DataReaderThread;
+
 import java.security.MessageDigest;
 import java.security.SecureRandom;
 import java.util.*;
@@ -11,6 +13,7 @@ public class Main {
     private static final List<Block> blockChain = new ArrayList<>();
 
     private static int numberOfZero = 0;
+    private static StringBuilder dataOfBlock;
 
     public static void main(String[] args) {
 
@@ -32,6 +35,7 @@ public class Main {
             }
         }
 
+        String blockData = "no message";
         for(Block block: blockChain){
             System.out.println("Block:");
             System.out.println("Created by miner # " + block.getMinerNum());
@@ -42,6 +46,11 @@ public class Main {
             System.out.println(block.getPreviousHashCode());
             System.out.println("Hash of the block: ");
             System.out.println(block.getCurrentHashCode());
+            if(blockData.equals("no message"))System.out.println("Block data: " + blockData);
+            else{
+                System.out.println("Block data: ");
+                System.out.println(blockData);
+            }
             System.out.println("Block was generating for " + block.getTimeToGenerate() + " seconds");
             if(block.getTimeToGenerate() <= 0){
                 System.out.println("N was increased to " + block.getNumberOfZeros());
@@ -51,6 +60,7 @@ public class Main {
                 System.out.println("N stays same");
             }
             System.out.println();
+            blockData = block.getBlockData();
         }
 
     }
@@ -66,10 +76,10 @@ public class Main {
         return true;
     }
 
-    public static ArrayList<String> generateHashCode(String magicNumber, String id, String timeStamp, String numberOfZero){
-//        SecureRandom random = new SecureRandom();
+    public static ArrayList<String> generateHashCode(String id, String timeStamp, String numberOfZero){
+        String magicNumber;
         Random random = new Random(0);
-        String newBlockHashCode = null;
+        String newBlockHashCode;
         Block lastBlock = null;
         if(!blockChain.isEmpty())
             lastBlock = blockChain.get(blockChain.size()-1);

@@ -10,10 +10,11 @@ public class Block {
     private String magicNumber;
     long timeToGenerate;
     String numberOfZeros;
+    String blockData;
 
     public Block(){}
 
-    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String numberOfZeros, int minerNum) {
+    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String numberOfZeros, int minerNum, String blockData) {
         this.id = id;
         this.timestamp = timestamp;
         this.previousHashCode = previousHashCode;
@@ -22,6 +23,7 @@ public class Block {
         this.timeToGenerate = timeToGenerate;
         this.numberOfZeros = numberOfZeros;
         this.minerNum = minerNum;
+        this.blockData = blockData;
     }
 
     public String getId() {
@@ -87,5 +89,13 @@ public class Block {
 
     public void setNumberOfZeros(String numberOfZeros) {
         this.numberOfZeros = numberOfZeros;
+    }
+
+    public String getBlockData() {
+        return blockData;
+    }
+
+    public void setBlockData(String blockData) {
+        this.blockData = blockData;
     }
 }
