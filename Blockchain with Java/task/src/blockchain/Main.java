@@ -1,19 +1,13 @@
 package blockchain;
 
-import blockchain.Data.DataReaderThread;
+import blockchain.Threads.MyThread;
 
 import java.security.MessageDigest;
-import java.security.SecureRandom;
 import java.util.*;
-import java.util.concurrent.*;
 
 public class Main {
 
-    public static int MAX_MINER_NUM = 10000;
     private static final List<Block> blockChain = new ArrayList<>();
-
-    private static int numberOfZero = 0;
-    private static StringBuilder dataOfBlock;
 
     public static void main(String[] args) {
 
@@ -46,7 +40,7 @@ public class Main {
             System.out.println(block.getPreviousHashCode());
             System.out.println("Hash of the block: ");
             System.out.println(block.getCurrentHashCode());
-            if(blockData.equals("no message"))System.out.println("Block data: " + blockData);
+            if(blockData.equals("no message") || blockData.isEmpty())System.out.println("Block data: " + blockData);
             else{
                 System.out.println("Block data: ");
                 System.out.println(blockData);

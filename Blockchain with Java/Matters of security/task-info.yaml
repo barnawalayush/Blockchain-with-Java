@@ -252,6 +252,190 @@ files:
           }
       }
     learner_created: false
+  - name: src/blockchain/Data/ClientMessage.txt
+    visible: true
+    text: |-
+      Sahil: Hello!
+      Ayush: hi guys
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+      Ayush: hi guys
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+      Ayush: hi guys
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+      Ayush: hi guys
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+      Ayush: hi guys
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+      Ayush: hi guys
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+      Ayush: hi guys
+      Sneha: yup!
+      Sunny: kim korbe?
+      Shaw: sab maja aahe?
+      aditya: ka haal chaal?
+      Sahil: Hello!
+    learner_created: true
+  - name: src/blockchain/Block.java
+    visible: true
+    text: |
+      package blockchain;
+      
+      public class Block {
+      
+          private String id;
+          private int minerNum;
+          private String timestamp;
+          private String previousHashCode;
+          private String currentHashCode;
+          private String magicNumber;
+          long timeToGenerate;
+          String numberOfZeros;
+          String blockData;
+      
+          public Block(){}
+      
+          public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String numberOfZeros, int minerNum, String blockData) {
+              this.id = id;
+              this.timestamp = timestamp;
+              this.previousHashCode = previousHashCode;
+              this.currentHashCode = currentHashCode;
+              this.magicNumber = magicNumber;
+              this.timeToGenerate = timeToGenerate;
+              this.numberOfZeros = numberOfZeros;
+              this.minerNum = minerNum;
+              this.blockData = blockData;
+          }
+      
+          public String getId() {
+              return id;
+          }
+      
+          public void setId(String id) {
+              this.id = id;
+          }
+      
+          public String getTimestamp() {
+              return timestamp;
+          }
+      
+          public void setTimestamp(String timestamp) {
+              this.timestamp = timestamp;
+          }
+      
+          public String getPreviousHashCode() {
+              return previousHashCode;
+          }
+      
+          public void setPreviousHashCode(String previousHashCode) {
+              this.previousHashCode = previousHashCode;
+          }
+      
+          public String getCurrentHashCode() {
+              return currentHashCode;
+          }
+      
+          public void setCurrentHashCode(String currentHashCode) {
+              this.currentHashCode = currentHashCode;
+          }
+      
+          public String getMagicNumber() {
+              return magicNumber;
+          }
+      
+          public int getMinerNum() {
+              return minerNum;
+          }
+      
+          public void setMinerNum(int minerNum) {
+              this.minerNum = minerNum;
+          }
+      
+          public void setMagicNumber(String magicNumber) {
+              this.magicNumber = magicNumber;
+          }
+      
+          public long getTimeToGenerate() {
+              return timeToGenerate;
+          }
+      
+          public void setTimeToGenerate(long timeToGenerate) {
+              this.timeToGenerate = timeToGenerate;
+          }
+      
+      
+          public String getNumberOfZeros() {
+              return numberOfZeros;
+          }
+      
+          public void setNumberOfZeros(String numberOfZeros) {
+              this.numberOfZeros = numberOfZeros;
+          }
+      
+          public String getBlockData() {
+              return blockData;
+          }
+      
+          public void setBlockData(String blockData) {
+              this.blockData = blockData;
+          }
+      }
+    learner_created: true
+  - name: src/blockchain/keyPair/GenerateKeys.java
+    visible: true
+    learner_created: true
+  - name: src/blockchain/keyPair/privateKey
+    visible: true
+    learner_created: true
+  - name: src/blockchain/keyPair/publicKey
+    visible: true
+    learner_created: true
+  - name: src/blockchain/SignMessage.java
+    visible: true
+    learner_created: true
+  - name: src/blockchain/SignedText.txt
+    visible: true
+    learner_created: true
+  - name: src/blockchain/VerifyMessage.java
+    visible: true
+    learner_created: true
+  - name: src/blockchain/Threads/MyThread.java
+    visible: true
+    learner_created: true
+  - name: src/blockchain/Threads/DataReaderThread.java
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5417#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Fri, 15 Mar 2024 07:20:43 UTC"
 record: -1

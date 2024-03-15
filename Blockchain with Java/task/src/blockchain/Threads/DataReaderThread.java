@@ -1,4 +1,4 @@
-package blockchain.Data;
+package blockchain.Threads;
 
 import blockchain.Block;
 
@@ -40,3 +40,4 @@ public class DataReaderThread extends Thread{
 
 
 }
+
