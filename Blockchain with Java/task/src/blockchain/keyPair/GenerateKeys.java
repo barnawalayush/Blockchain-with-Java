@@ -1,14 +1,10 @@
 package blockchain.keyPair;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import blockchain.Model.Message;
+import blockchain.Signature.SignMessage;
+
 import java.io.IOException;
-import java.security.KeyPair;
-import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.*;
 
 public class GenerateKeys {
 
@@ -36,25 +32,18 @@ public class GenerateKeys {
         return this.publicKey;
     }
 
-    public void writeToFile(String path, byte[] key) throws IOException {
-        File f = new File(path);
-        f.getParentFile().mkdirs();
-
-        FileOutputStream fos = new FileOutputStream(f);
-        fos.write(key);
-        fos.flush();
-        fos.close();
-    }
-
-    public static void generate(String[] args) {
+    public static void generate(Message message) {
         GenerateKeys gk;
         try {
             gk = new GenerateKeys(1024);
             gk.createKeys();
-            gk.writeToFile("/Users/abarnawal/Java Intellijec Projects/Blockchain with Java/Blockchain with Java/task/src/blockchain/keyPair/publicKey", gk.getPublicKey().getEncoded());
-            gk.writeToFile("/Users/abarnawal/Java Intellijec Projects/Blockchain with Java/Blockchain with Java/task/src/blockchain/keyPair/privateKey", gk.getPrivateKey().getEncoded());
+            message.setPrivateKey(gk.getPrivateKey());
+            message.setPublicKey(gk.getPublicKey());
+            SignMessage.sign(message);
         } catch (NoSuchAlgorithmException | NoSuchProviderException | IOException e) {
             System.err.println(e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
     }

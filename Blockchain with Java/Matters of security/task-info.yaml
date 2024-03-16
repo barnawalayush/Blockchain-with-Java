@@ -304,7 +304,13 @@ files:
       aditya: ka haal chaal?
       Sahil: Hello!
     learner_created: true
-  - name: src/blockchain/Block.java
+  - name: src/blockchain/keyPair/GenerateKeys.java
+    visible: true
+    learner_created: true
+  - name: src/blockchain/Threads/DataReaderThread.java
+    visible: true
+    learner_created: true
+  - name: src/blockchain/Model/Block.java
     visible: true
     text: |
       package blockchain;
@@ -409,33 +415,21 @@ files:
           }
       }
     learner_created: true
-  - name: src/blockchain/keyPair/GenerateKeys.java
+  - name: src/blockchain/Model/Message.java
     visible: true
     learner_created: true
-  - name: src/blockchain/keyPair/privateKey
+  - name: src/blockchain/Signature/SignMessage.java
     visible: true
     learner_created: true
-  - name: src/blockchain/keyPair/publicKey
+  - name: src/blockchain/Signature/VerifyMessage.java
     visible: true
     learner_created: true
-  - name: src/blockchain/SignMessage.java
-    visible: true
-    learner_created: true
-  - name: src/blockchain/SignedText.txt
-    visible: true
-    learner_created: true
-  - name: src/blockchain/VerifyMessage.java
-    visible: true
-    learner_created: true
-  - name: src/blockchain/Threads/MyThread.java
-    visible: true
-    learner_created: true
-  - name: src/blockchain/Threads/DataReaderThread.java
+  - name: src/blockchain/Threads/MinerThread.java
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/5417#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: "Fri, 15 Mar 2024 07:20:43 UTC"
-record: -1
+  time: "Sat, 16 Mar 2024 11:18:37 UTC"
+record: 5

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="BlockchainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-15T07:20:43" hostname="C14166" time="0.156">
+<testsuite name="BlockchainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-03-16T11:18:21" hostname="C14166" time="15.328">
   <properties/>
-  <testcase name="start" classname="BlockchainTest" time="0.156"/>
+  <testcase name="start" classname="BlockchainTest" time="15.328"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 Block:
-Created by miner # 7
+Created by miner # 5
 Id: 1
-Timestamp: 1710487243707
+Timestamp: 1710587901692
 Magic number: -1155484576
 Hash of the previous block: 
 0
@@ -18,37 +18,48 @@ Block was generating for 0 seconds
 N was increased to 1
 
 Block:
-Created by miner # 161
+Created by miner # 236
 Id: 2
-Timestamp: 1710487243729
+Timestamp: 1710587901761
 Magic number: -1155484576
 Hash of the previous block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Hash of the block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Block data: 
-Sahil: Hello!
 Block was generating for 0 seconds
 N was increased to 2
 
 Block:
-Created by miner # 160
+Created by miner # 371
 Id: 3
-Timestamp: 1710487243733
+Timestamp: 1710587901789
 Magic number: -1155484576
 Hash of the previous block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Hash of the block: 
-4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
+3b538b3a194972d194953f0ca68b1055d347240d4decf72a7872bffab04a5092
 Block data: 
-Sahil: Hello!
 Block was generating for 0 seconds
 N was increased to 3
 
 Block:
-Created by miner # 159
+Created by miner # 233
 Id: 4
-Timestamp: 1710487243735
+Timestamp: 1710587901884
+Magic number: -1155484576
+Hash of the previous block: 
+3b538b3a194972d194953f0ca68b1055d347240d4decf72a7872bffab04a5092
+Hash of the block: 
+4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
+Block data: 
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner # 230
+Id: 5
+Timestamp: 1710587901931
 Magic number: -1155484576
 Hash of the previous block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
@@ -56,30 +67,15 @@ Hash of the block:
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Block data: 
 Sahil: Hello!
-Block was generating for 0 seconds
-N was increased to 4
-
-Block:
-Created by miner # 215
-Id: 5
-Timestamp: 1710487243738
-Magic number: -723955400
-Hash of the previous block: 
-4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
-Hash of the block: 
-2a17659d8929f14cf5616a67f9b92b8e0fa3615715d7344393a564b868532f6d
-Block data: 
-Sahil: Hello!
-Ayush: hi guys
 Block was generating for 0 seconds
 N was increased to 5
 
 ?[1;31m
 Start test 2?[0m
 Block:
-Created by miner # 5
+Created by miner # 2
 Id: 1
-Timestamp: 1710487243773
+Timestamp: 1710587911431
 Magic number: -1155484576
 Hash of the previous block: 
 0
@@ -90,9 +86,9 @@ Block was generating for 0 seconds
 N was increased to 1
 
 Block:
-Created by miner # 40
+Created by miner # 71
 Id: 2
-Timestamp: 1710487243777
+Timestamp: 1710587911459
 Magic number: -1155484576
 Hash of the previous block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
@@ -104,9 +100,9 @@ Block was generating for 0 seconds
 N was increased to 2
 
 Block:
-Created by miner # 39
+Created by miner # 67
 Id: 3
-Timestamp: 1710487243780
+Timestamp: 1710587911473
 Magic number: -1155484576
 Hash of the previous block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
@@ -117,138 +113,31 @@ Block was generating for 0 seconds
 N was increased to 3
 
 Block:
-Created by miner # 38
+Created by miner # 70
 Id: 4
-Timestamp: 1710487243783
+Timestamp: 1710587911492
 Magic number: -1155484576
 Hash of the previous block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Hash of the block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Block data: 
-Sahil: Hello!
 Block was generating for 0 seconds
 N was increased to 4
 
 Block:
-Created by miner # 121
+Created by miner # 66
 Id: 5
-Timestamp: 1710487243788
-Magic number: -723955400
+Timestamp: 1710587911499
+Magic number: -1155484576
 Hash of the previous block: 
 4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Hash of the block: 
-2a17659d8929f14cf5616a67f9b92b8e0fa3615715d7344393a564b868532f6d
+4769a0b00f06f281399e793add1c933ae02be61aff585f1f81cc9006181d97d4
 Block data: 
-Sahil: Hello!
 Block was generating for 0 seconds
 N was increased to 5
 
 ]]></system-out>
-  <system-err><![CDATA[?[0;34md-13" Exception in thread "Thread-14" Exception in thread "Thread-15" Exception in thread "Thread-85" Exception in thread "Thread-95" Exception in thread "Thread-91" Exception in thread "Thread-147" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-11" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-71" Exception in thread "Thread-411" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-165" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-351" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-83" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-146" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-373" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-363" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-335" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-331" Exception in thread "Thread-488" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-426" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-423" Exception in thread "Thread-419" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-415" Exception in thread "Thread-413" Exception in thread "Thread-407" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-406" Exception in thread "Thread-401" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-261" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-399" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-?[0;34mException in thread "Thread-577" java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-?[0m?[0;34mCaused by: java.lang.InterruptedException: sleep interrupted
-?[0m?[0;34m	at java.base/java.lang.Thread.sleep(Native Method)
-?[0m?[0;34m	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-Caused by: java.lang.InterruptedException: sleep interrupted
-	at java.base/java.lang.Thread.sleep(Native Method)
-	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-Caused by: java.lang.InterruptedException: sleep interrupted
-	at java.base/java.lang.Thread.sleep(Native Method)
-	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-java.lang.RuntimeException: java.lang.InterruptedException: sleep interrupted
-	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:37)
-Caused by: java.lang.InterruptedException: sleep interrupted
-	at java.base/java.lang.Thread.sleep(Native Method)
-	at blockchain.Threads.DataReaderThread.run(DataReaderThread.java:32)
-]]></system-err>
+  <system-err><![CDATA[]]></system-err>
 </testsuite>

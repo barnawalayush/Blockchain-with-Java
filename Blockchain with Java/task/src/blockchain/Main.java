@@ -1,6 +1,7 @@
 package blockchain;
 
-import blockchain.Threads.MyThread;
+import blockchain.Model.Block;
+import blockchain.Threads.MinerThread;
 
 import java.security.MessageDigest;
 import java.util.*;
@@ -15,7 +16,7 @@ public class Main {
 
         int minerNum =1;
         while(blockChain.size() < 5){
-            Thread thread = new MyThread(blockChain, minerNum);
+            Thread thread = new MinerThread(blockChain, minerNum);
             listOfThread.add(thread);
             minerNum++;
             thread.start();
@@ -48,13 +49,13 @@ public class Main {
             System.out.println("Block was generating for " + block.getTimeToGenerate() + " seconds");
             if(block.getTimeToGenerate() <= 0){
                 System.out.println("N was increased to " + block.getNumberOfZeros());
-            }else if(block.getTimeToGenerate() >= 65){
+            }else if(block.getTimeToGenerate() >= 15){
                 System.out.println("N was decreased to " + block.getNumberOfZeros());
             }else{
                 System.out.println("N stays same");
             }
             System.out.println();
-            blockData = block.getBlockData();
+            blockData = block.getMessage().getDataOfBlock().toString();
         }
 
     }

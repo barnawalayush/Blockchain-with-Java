@@ -1,6 +1,7 @@
 package blockchain.Threads;
 
-import blockchain.Block;
+import blockchain.Model.Block;
+import blockchain.Model.Message;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -13,11 +14,13 @@ public class DataReaderThread extends Thread{
     StringBuilder chatList;
     List<Block> blockChain;
     int size;
+    Message message;
 
-    public DataReaderThread(List<Block> blockChain,StringBuilder chatList, int size){
+    public DataReaderThread(List<Block> blockChain, StringBuilder chatList, int size, Message message){
         this.chatList = chatList;
         this.blockChain = blockChain;
         this.size = size;
+        this.message = message;
     }
 
     @Override
@@ -29,10 +32,11 @@ public class DataReaderThread extends Thread{
                 synchronized (this){
                     chatList.append(line).append("\n");
                 }
-                Thread.sleep(5L);
+                Thread.sleep(1L);
             }
-        }catch (IOException e){
 
+        }catch (IOException e){
+            throw new RuntimeException();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
