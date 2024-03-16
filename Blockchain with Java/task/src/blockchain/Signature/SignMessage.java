@@ -8,7 +8,7 @@ import java.security.Signature;
 
 public class SignMessage {
 
-    public static void sign(Message message) throws InvalidKeyException, Exception{
+    public static void sign(Message message) throws InvalidKeyException, Exception {
         Signature rsa = Signature.getInstance("SHA1withRSA");
         rsa.initSign(message.getPrivateKey());
         rsa.update(message.getDataOfBlock().toString().getBytes());

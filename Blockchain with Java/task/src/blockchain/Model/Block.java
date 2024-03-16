@@ -15,7 +15,8 @@ public class Block {
     private Message message;
     private List<Transaction> transactionList;
 
-    public Block(){}
+    public Block() {
+    }
 
     public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String numberOfZeros, int minerNum, Message message, List<Transaction> transactionList) {
         this.id = id;

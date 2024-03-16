@@ -9,14 +9,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
-public class DataReaderThread extends Thread{
+public class DataReaderThread extends Thread {
 
     StringBuilder chatList;
     List<Block> blockChain;
     int size;
     Message message;
 
-    public DataReaderThread(List<Block> blockChain, StringBuilder chatList, int size, Message message){
+    public DataReaderThread(List<Block> blockChain, StringBuilder chatList, int size, Message message) {
         this.chatList = chatList;
         this.blockChain = blockChain;
         this.size = size;
@@ -26,16 +26,16 @@ public class DataReaderThread extends Thread{
     @Override
     public void run() {
         size++;
-        try(BufferedReader reader = new BufferedReader(new FileReader(new File("/Users/abarnawal/Java Intellijec Projects/Blockchain with Java/Blockchain with Java/task/src/blockchain/Data/ClientMessage.txt")))){
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File("/Users/abarnawal/Java Intellijec Projects/Blockchain with Java/Blockchain with Java/task/src/blockchain/Data/ClientMessage.txt")))) {
             String line;
             while ((line = reader.readLine()) != null && blockChain.size() != size) {
-                synchronized (this){
+                synchronized (this) {
                     chatList.append(line).append("\n");
                 }
                 Thread.sleep(1L);
             }
 
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new RuntimeException();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);

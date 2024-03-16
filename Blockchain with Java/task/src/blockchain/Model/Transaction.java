@@ -1,5 +1,8 @@
 package blockchain.Model;
 
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
 public class Transaction {
 
     String giver;
@@ -19,6 +22,7 @@ public class Transaction {
     public String getBorrower() {
         return borrower;
     }
+
     public int getAmount() {
         return amount;
     }

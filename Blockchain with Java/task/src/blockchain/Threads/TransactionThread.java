@@ -7,14 +7,14 @@ import blockchain.Model.User;
 import java.util.List;
 import java.util.Random;
 
-public class TransactionThread extends Thread{
+public class TransactionThread extends Thread {
 
     final List<User> giverList;
     int size;
     List<Block> blockChain;
     final List<Transaction> transactionList;
 
-    public TransactionThread(List<User> giverlist, List<Block> blockChain, int size, List<Transaction> transactionList){
+    public TransactionThread(List<User> giverlist, List<Block> blockChain, int size, List<Transaction> transactionList) {
         this.giverList = giverlist;
         this.size = size;
         this.blockChain = blockChain;
@@ -29,37 +29,37 @@ public class TransactionThread extends Thread{
         int MaxIndex = giverList.size();
         Random random = new Random();
 
-            while (blockChain.size() != size && blockChain.size() < 15){
+        while (blockChain.size() != size && blockChain.size() < 15) {
 
-                int randomIndex1 = random.nextInt(MaxIndex);
-                User randomGiver = giverList.get(randomIndex1);
+            int randomIndex1 = random.nextInt(MaxIndex);
+            User randomGiver = giverList.get(randomIndex1);
 
-                int randomIndex2 = random.nextInt(MaxIndex);
-                User randomBorrower = giverList.get(randomIndex2);
-                synchronized (giverList) {
-                    if (!randomBorrower.getName().equals(randomGiver.getName())) {
+            int randomIndex2 = random.nextInt(MaxIndex);
+            User randomBorrower = giverList.get(randomIndex2);
+            synchronized (giverList) {
+                if (!randomBorrower.getName().equals(randomGiver.getName())) {
 
-                        Random random1 = new Random();
-                        int amount = random1.nextInt(100);
+                    Random random1 = new Random();
+                    int amount = random1.nextInt(100);
 
-                        if (amount > 0 && randomGiver.getVirtualCoin() >= amount) {
-                            int leftAmount = randomGiver.getVirtualCoin() - amount;
-                            randomGiver.setVirtualCoin(leftAmount);
-                            int newAmount = randomBorrower.getVirtualCoin() + amount;
-                            randomBorrower.setVirtualCoin(newAmount);
+                    if (amount > 0 && randomGiver.getVirtualCoin() >= amount) {
+                        int leftAmount = randomGiver.getVirtualCoin() - amount;
+                        randomGiver.setVirtualCoin(leftAmount);
+                        int newAmount = randomBorrower.getVirtualCoin() + amount;
+                        randomBorrower.setVirtualCoin(newAmount);
 
-                            synchronized (transactionList){
-                                transactionList.add(new Transaction(randomGiver.getName(), randomBorrower.getName(), amount));
-                            }
-
+                        synchronized (transactionList) {
+                            transactionList.add(new Transaction(randomGiver.getName(), randomBorrower.getName(), amount));
                         }
+
                     }
                 }
-                try {
-                    Thread.sleep(100000000L);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
             }
+            try {
+                Thread.sleep(100000000L);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

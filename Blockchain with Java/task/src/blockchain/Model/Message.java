@@ -10,7 +10,9 @@ public class Message {
     private byte[] signature;
     private PrivateKey privateKey;
 
-    public Message(){}
+    public Message() {
+    }
+
     public Message(StringBuilder dataOfBlock, PublicKey publicKey, byte[] signature, PrivateKey privateKey) {
         this.dataOfBlock = dataOfBlock;
         this.publicKey = publicKey;

@@ -12,7 +12,7 @@ import java.util.*;
 
 import static java.lang.Math.round;
 
-public class MinerThread extends Thread{
+public class MinerThread extends Thread {
 
     private final List<Block> blockChain;
     private Long id;
@@ -27,7 +27,7 @@ public class MinerThread extends Thread{
     final List<User> giverList;
     final List<Transaction> transactionList;
 
-    public MinerThread(List<Block> blockChain, int minerNum, List<User> giverList, List<Transaction> transactionList){
+    public MinerThread(List<Block> blockChain, int minerNum, List<User> giverList, List<Transaction> transactionList) {
         this.blockChain = blockChain;
         this.minerNum = minerNum;
         this.giverList = giverList;
@@ -40,13 +40,13 @@ public class MinerThread extends Thread{
         Message message = new Message();
 
         dataOfBlock = new StringBuilder();
-        Long startTime = System.currentTimeMillis()/1000;
+        Long startTime = System.currentTimeMillis() / 1000;
         Block lastBlock;
 
-        if(blockChain.isEmpty()){
+        if (blockChain.isEmpty()) {
             id = 1L;
-        }else{
-            lastBlock = blockChain.get(blockChain.size()-1);
+        } else {
+            lastBlock = blockChain.get(blockChain.size() - 1);
             id = Long.parseLong(lastBlock.getId());
             id++;
         }
@@ -54,7 +54,7 @@ public class MinerThread extends Thread{
         Thread chatThread = new DataReaderThread(blockChain, dataOfBlock, blockChain.size(), message);
         chatThread.start();
 
-        if(!giverList.isEmpty()){
+        if (!giverList.isEmpty()) {
             Thread transactionThread = new TransactionThread(giverList, blockChain, blockChain.size(), transactionList);
             transactionThread.start();
         }
@@ -63,22 +63,22 @@ public class MinerThread extends Thread{
         currentHashCode = list.get(1);
         magicNumber = list.get(0);
 
-        synchronized (blockChain){
+        synchronized (blockChain) {
 
             timeStamp = String.valueOf(new Date().getTime());
 
             String blockData = dataOfBlock.toString();
-            if(!blockData.isEmpty())
-                blockData = blockData.substring(0, blockData.length()-1);
+            if (!blockData.isEmpty())
+                blockData = blockData.substring(0, blockData.length() - 1);
             message.setDataOfBlock(new StringBuilder(blockData));
             GenerateKeys.generate(message);
 
-            if(blockChain.size() < 15){
+            if (blockChain.size() < 15) {
 
                 try {
-                    if(VerifyMessage.verifySign(message)){
+                    if (VerifyMessage.verifySign(message)) {
 
-                        synchronized (giverList){
+                        synchronized (giverList) {
                             User user = new User("miner" + minerNum, 100);
                             giverList.add(user);
                         }
@@ -93,34 +93,34 @@ public class MinerThread extends Thread{
         }
     }
 
-    private void addBlock(Long startTime, Message message){
+    private void addBlock(Long startTime, Message message) {
 
-        Long endTime = System.currentTimeMillis()/1000;
-        timeToGenerate = String.valueOf(endTime-startTime);
+        Long endTime = System.currentTimeMillis() / 1000;
+        timeToGenerate = String.valueOf(endTime - startTime);
 
         List<Transaction> dummyTransactionList;
 
-        synchronized (transactionList){
+        synchronized (transactionList) {
             dummyTransactionList = new ArrayList<>(transactionList);
             transactionList.clear();
         }
 
-        if(blockChain.isEmpty()){
+        if (blockChain.isEmpty()) {
 
             numberOfZero = 1;
             previousHashCode = "0";
 
             blockChain.add(new Block("1", timeStamp, previousHashCode, currentHashCode, magicNumber, Long.parseLong(timeToGenerate), String.valueOf(numberOfZero), minerNum, message, dummyTransactionList));
 
-        }else {
+        } else {
 
-            Block lastBlock1 = blockChain.get(blockChain.size()-1);
+            Block lastBlock1 = blockChain.get(blockChain.size() - 1);
             id = Long.parseLong(lastBlock1.getId());
             id++;
             numberOfZero = Integer.parseInt(lastBlock1.getNumberOfZeros());
 
-            if(Long.parseLong(timeToGenerate) <= 1) numberOfZero++;
-            else if(Long.parseLong(timeToGenerate) > 6) numberOfZero--;
+            if (Long.parseLong(timeToGenerate) <= 1) numberOfZero++;
+            else if (Long.parseLong(timeToGenerate) > 6) numberOfZero--;
 
             previousHashCode = lastBlock1.getCurrentHashCode();
             blockChain.add(new Block(String.valueOf(id), timeStamp, previousHashCode, currentHashCode, magicNumber, Long.parseLong(timeToGenerate), String.valueOf(numberOfZero), minerNum, message, dummyTransactionList));
