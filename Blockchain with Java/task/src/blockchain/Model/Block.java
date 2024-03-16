@@ -1,5 +1,7 @@
 package blockchain.Model;
 
+import java.util.List;
+
 public class Block {
 
     private String id;
@@ -9,13 +11,13 @@ public class Block {
     private String currentHashCode;
     private String magicNumber;
     long timeToGenerate;
-    String numberOfZeros;
-    String blockData;
+    private String numberOfZeros;
     private Message message;
+    private List<Transaction> transactionList;
 
     public Block(){}
 
-    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String numberOfZeros, int minerNum, Message message) {
+    public Block(String id, String timestamp, String previousHashCode, String currentHashCode, String magicNumber, long timeToGenerate, String numberOfZeros, int minerNum, Message message, List<Transaction> transactionList) {
         this.id = id;
         this.timestamp = timestamp;
         this.previousHashCode = previousHashCode;
@@ -24,40 +26,24 @@ public class Block {
         this.timeToGenerate = timeToGenerate;
         this.numberOfZeros = numberOfZeros;
         this.minerNum = minerNum;
-//        this.blockData = blockData;
         this.message = message;
+        this.transactionList = transactionList;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTimestamp() {
         return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
     }
 
     public String getPreviousHashCode() {
         return previousHashCode;
     }
 
-    public void setPreviousHashCode(String previousHashCode) {
-        this.previousHashCode = previousHashCode;
-    }
-
     public String getCurrentHashCode() {
         return currentHashCode;
-    }
-
-    public void setCurrentHashCode(String currentHashCode) {
-        this.currentHashCode = currentHashCode;
     }
 
     public String getMagicNumber() {
@@ -68,44 +54,16 @@ public class Block {
         return minerNum;
     }
 
-    public void setMinerNum(int minerNum) {
-        this.minerNum = minerNum;
-    }
-
-    public void setMagicNumber(String magicNumber) {
-        this.magicNumber = magicNumber;
-    }
-
     public long getTimeToGenerate() {
         return timeToGenerate;
     }
-
-    public void setTimeToGenerate(long timeToGenerate) {
-        this.timeToGenerate = timeToGenerate;
-    }
-
 
     public String getNumberOfZeros() {
         return numberOfZeros;
     }
 
-    public void setNumberOfZeros(String numberOfZeros) {
-        this.numberOfZeros = numberOfZeros;
+    public List<Transaction> getTransactionList() {
+        return transactionList;
     }
 
-//    public String getBlockData() {
-//        return blockData;
-//    }
-//
-//    public void setBlockData(String blockData) {
-//        this.blockData = blockData;
-//    }
-
-    public Message getMessage() {
-        return message;
-    }
-
-    public void setMessage(Message message) {
-        this.message = message;
-    }
 }

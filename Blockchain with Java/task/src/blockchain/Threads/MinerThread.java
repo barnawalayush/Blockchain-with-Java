@@ -3,6 +3,8 @@ package blockchain.Threads;
 import blockchain.*;
 import blockchain.Model.Block;
 import blockchain.Model.Message;
+import blockchain.Model.Transaction;
+import blockchain.Model.User;
 import blockchain.Signature.VerifyMessage;
 import blockchain.keyPair.GenerateKeys;
 
@@ -15,17 +17,21 @@ public class MinerThread extends Thread{
     private final List<Block> blockChain;
     private Long id;
     private String timeStamp;
-    private String previousHashCode;
+    String previousHashCode;
     private String currentHashCode;
     private String magicNumber;
-    private String timeToGenerate;
+    String timeToGenerate;
     private int numberOfZero;
-    private int minerNum;
-    private StringBuilder dataOfBlock;
+    int minerNum;
+    StringBuilder dataOfBlock;
+    final List<User> giverList;
+    final List<Transaction> transactionList;
 
-    public MinerThread(List<Block> blockChain, int minerNum){
+    public MinerThread(List<Block> blockChain, int minerNum, List<User> giverList, List<Transaction> transactionList){
         this.blockChain = blockChain;
         this.minerNum = minerNum;
+        this.giverList = giverList;
+        this.transactionList = transactionList;
     }
 
     @Override
@@ -34,7 +40,6 @@ public class MinerThread extends Thread{
         Message message = new Message();
 
         dataOfBlock = new StringBuilder();
-
         Long startTime = System.currentTimeMillis()/1000;
         Block lastBlock;
 
@@ -48,6 +53,11 @@ public class MinerThread extends Thread{
 
         Thread chatThread = new DataReaderThread(blockChain, dataOfBlock, blockChain.size(), message);
         chatThread.start();
+
+        if(!giverList.isEmpty()){
+            Thread transactionThread = new TransactionThread(giverList, blockChain, blockChain.size(), transactionList);
+            transactionThread.start();
+        }
 
         ArrayList<String> list = Main.generateHashCode(String.valueOf(id), timeStamp, String.valueOf(numberOfZero));
         currentHashCode = list.get(1);
@@ -63,10 +73,16 @@ public class MinerThread extends Thread{
             message.setDataOfBlock(new StringBuilder(blockData));
             GenerateKeys.generate(message);
 
-            if(blockChain.size() < 5){
+            if(blockChain.size() < 15){
 
                 try {
                     if(VerifyMessage.verifySign(message)){
+
+                        synchronized (giverList){
+                            User user = new User("miner" + minerNum, 100);
+                            giverList.add(user);
+                        }
+
                         addBlock(startTime, message);
                     }
                 } catch (Exception e) {
@@ -78,16 +94,23 @@ public class MinerThread extends Thread{
     }
 
     private void addBlock(Long startTime, Message message){
-        String blockData = message.getDataOfBlock().toString();
-        if(!blockData.isEmpty())blockData = blockData.substring(0, blockData.length()-1);
 
         Long endTime = System.currentTimeMillis()/1000;
         timeToGenerate = String.valueOf(endTime-startTime);
 
+        List<Transaction> dummyTransactionList;
+
+        synchronized (transactionList){
+            dummyTransactionList = new ArrayList<>(transactionList);
+            transactionList.clear();
+        }
+
         if(blockChain.isEmpty()){
+
             numberOfZero = 1;
             previousHashCode = "0";
-            blockChain.add(new Block("1", timeStamp, previousHashCode, currentHashCode, magicNumber, Long.parseLong(timeToGenerate), String.valueOf(numberOfZero), minerNum, message));
+
+            blockChain.add(new Block("1", timeStamp, previousHashCode, currentHashCode, magicNumber, Long.parseLong(timeToGenerate), String.valueOf(numberOfZero), minerNum, message, dummyTransactionList));
 
         }else {
 
@@ -100,7 +123,7 @@ public class MinerThread extends Thread{
             else if(Long.parseLong(timeToGenerate) > 6) numberOfZero--;
 
             previousHashCode = lastBlock1.getCurrentHashCode();
-            blockChain.add(new Block(String.valueOf(id), timeStamp, previousHashCode, currentHashCode, magicNumber, Long.parseLong(timeToGenerate), String.valueOf(numberOfZero), minerNum, message));
+            blockChain.add(new Block(String.valueOf(id), timeStamp, previousHashCode, currentHashCode, magicNumber, Long.parseLong(timeToGenerate), String.valueOf(numberOfZero), minerNum, message, dummyTransactionList));
         }
     }
 }

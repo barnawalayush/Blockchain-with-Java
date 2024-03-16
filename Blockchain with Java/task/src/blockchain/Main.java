@@ -1,6 +1,8 @@
 package blockchain;
 
 import blockchain.Model.Block;
+import blockchain.Model.Transaction;
+import blockchain.Model.User;
 import blockchain.Threads.MinerThread;
 
 import java.security.MessageDigest;
@@ -12,11 +14,21 @@ public class Main {
 
     public static void main(String[] args) {
 
+        List<User> giverList = new ArrayList<>();
+
+        List<Transaction> transactionList = new ArrayList<>();
+
+        giverList.add(new User("Bob", 0));
+        giverList.add(new User("Alice", 0));
+        giverList.add(new User("Sherlock", 0));
+        giverList.add(new User("Antonio", 0));
+        giverList.add(new User("Jessica", 0));
+
         List<Thread> listOfThread = new ArrayList<>();
 
         int minerNum =1;
-        while(blockChain.size() < 5){
-            Thread thread = new MinerThread(blockChain, minerNum);
+        while(blockChain.size() < 15){
+            Thread thread = new MinerThread(blockChain, minerNum, giverList, transactionList);
             listOfThread.add(thread);
             minerNum++;
             thread.start();
@@ -30,10 +42,17 @@ public class Main {
             }
         }
 
-        String blockData = "no message";
+        printBlockDetail(blockChain);
+
+    }
+
+    private static void printBlockDetail(List<Block> blockChain) {
+
+        String blockData = "no transaction";
         for(Block block: blockChain){
             System.out.println("Block:");
-            System.out.println("Created by miner # " + block.getMinerNum());
+            System.out.println("Created by : miner" + block.getMinerNum());
+            System.out.println("miner" + block.getMinerNum() + " gets 100 VC");
             System.out.println("Id: " + block.getId());
             System.out.println("Timestamp: " + block.getTimestamp());
             System.out.println("Magic number: " + block.getMagicNumber());
@@ -41,11 +60,18 @@ public class Main {
             System.out.println(block.getPreviousHashCode());
             System.out.println("Hash of the block: ");
             System.out.println(block.getCurrentHashCode());
-            if(blockData.equals("no message") || blockData.isEmpty())System.out.println("Block data: " + blockData);
-            else{
-                System.out.println("Block data: ");
-                System.out.println(blockData);
+
+            List<Transaction> transactionlist = block.getTransactionList();
+            StringBuilder dataOfBlock = new StringBuilder();
+            for(Transaction transaction: transactionlist){
+                dataOfBlock.append(transaction.getGiver() + " sent " + transaction.getAmount() + "VC to " + transaction.getBorrower()).append("\n");
             }
+            blockData = dataOfBlock.toString();
+            if(!blockData.isEmpty())blockData = blockData.substring(0, blockData.length()-1);
+            else blockData = "No transaction";
+
+            System.out.println("Block data: ");
+            System.out.println(blockData);
             System.out.println("Block was generating for " + block.getTimeToGenerate() + " seconds");
             if(block.getTimeToGenerate() <= 0){
                 System.out.println("N was increased to " + block.getNumberOfZeros());
@@ -55,20 +81,8 @@ public class Main {
                 System.out.println("N stays same");
             }
             System.out.println();
-            blockData = block.getMessage().getDataOfBlock().toString();
         }
 
-    }
-
-    private static Boolean validateBlockChain(List<Block> blockChain) {
-
-        String hashCodePreviousBlock = "0";
-        for(Block block: blockChain){
-            if(!block.getPreviousHashCode().equals(hashCodePreviousBlock))
-                return false;
-            hashCodePreviousBlock = block.getCurrentHashCode();
-        }
-        return true;
     }
 
     public static ArrayList<String> generateHashCode(String id, String timeStamp, String numberOfZero){

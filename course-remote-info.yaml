@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://cogniterra.org/media/attachments/lesson/23032/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: "Sat, 16 Mar 2024 04:55:40 UTC"
+update_date: "Sat, 16 Mar 2024 12:55:19 UTC"
 stages:
   - id: 271
     step: 5413
@@ -22,7 +22,7 @@ stages:
     is_completed: true
   - id: 276
     step: 5418
-    is_completed: false
+    is_completed: true
 topics:
   0:
     - title: Modulo division
